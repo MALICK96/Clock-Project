@@ -1,0 +1,121 @@
+<!-- 
+    Program: This program build a random quotes generator and add a date and time features to it. Which will automatically reload the page after evry 10 seconds 
+    Author: Malick Diakite
+    Date: 2/26/2019
+ -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Welcome to My page</title>
+    </head>
+
+    <style>
+        .wrapper {
+            width: 35%;
+            /* height: 100%;  */
+            margin:  auto;
+            margin-top: 20px;
+            padding: 10px 5px 10px 5px;
+            border: 1px solid #eee;
+            text-align: center;
+            font-family: monospace;
+            font-size: 1.5em;
+            box-shadow: 5px 3px 5px #eee;
+        }
+
+        div.wrapper h2 {
+            font-weight: 400;
+            font-size: 1.5em;
+        }
+        div#info {
+            margin-top: 15px;
+        }
+    </style>
+    <body>
+        <div class="wrapper">
+            <h2>Random Quotes</h2>
+            <div id="card">
+            
+            </div>
+            <div id="info">
+            
+            </div>
+        </div>
+        
+        <script>
+
+            function showDate()
+            {
+                var currentInfo = new  Date(),
+                today = currentInfo.getDate(),
+                theWeek = currentInfo.getDay(),
+                theMonth = currentInfo.getMonth(),
+                theYear = currentInfo.getFullYear(),
+                theHour = currentInfo.getHours(),
+                theMinutes = currentInfo.getMinutes(),
+                theSeconds = currentInfo.getSeconds();
+
+                var ap = (theHour > 12) ? "PM" : "AM";
+
+                theMonth++;
+
+                theHour = (theHour >= 13) ? theHour -= 12 : theHour;
+                theHour = (theHour < 1) ? 12 : theHour;
+                theMinutes = (theMinutes < 10) ? "0" + theMinutes : theMinutes;
+                theSeconds = (theSeconds < 10) ? "0" + theSeconds : theSeconds;
+
+                var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+                var div = document.getElementById("info");
+
+                div.innerHTML = days[theWeek] + ", " +theMonth + "/" + today + "/" + theYear + "<br>" + theHour + ":" + theMinutes + ":" + theSeconds + " " + ap;
+
+                setInterval(function() {
+                    showDate();
+                }, 1000);
+
+            }
+            
+            showDate();
+
+              
+            
+            function setTime() {
+                var card = document.getElementById("card");
+
+                var quotes = [
+                                '"Life is easy, if know how to live it..."<br>- Malick Diakite', 
+                                '"You can only find the truth by searching..."<br>- Eric Zoye',
+                                '"You are the leader of your destiny..."<br>-Omar Bint',
+                                '"There are only two ways to live your life..."<br>-Albert Einstein',
+                                '"With great power comes great responsability"<br>-Uncle Ben',
+
+                            ];
+
+                var rand_int = Math.floor(Math.random() * quotes.length);
+
+                
+                card.innerHTML = quotes[rand_int];
+
+                setInterval(function(){
+                    location.reload();
+
+                }, 10000);
+            }
+
+            setTime();
+            
+
+            
+
+            
+            
+
+                
+    
+        </script>
+            
+    </body>
+</html>
+
